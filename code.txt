@@ -1,0 +1,59 @@
+from selenium import webdriver
+from selenium.webdriver.chrome.options import Options
+import time
+user = input("Type Email/Phone Here::")
+pswd = input("Type Password Here::")
+txt = input("Message::")
+opt = Options()
+opt.add_argument("--disable-infobars")
+opt.add_argument("start-maximized")
+opt.add_argument("--disable-extensions")
+# Pass the argument 1 to allow and 2 to block
+opt.add_experimental_option("prefs", { \
+    "profile.default_content_setting_values.media_stream_mic": 1, 
+    "profile.default_content_setting_values.media_stream_camera": 1,
+    "profile.default_content_setting_values.geolocation": 1, 
+    "profile.default_content_setting_values.notifications": 1 
+  })
+
+driver = webdriver.Chrome(chrome_options=opt, executable_path=r'D:\hacks\sneakyevil\main\chromedriver.exe')
+driver.get('https://www.textnow.com/login')
+
+
+time.sleep(3)
+xpathgod1 = '/html/body/div[1]/div/div[2]/div/div[3]/form/div[1]/div/input'
+userbox1 = driver.find_element_by_xpath(xpathgod1) 
+userbox1.send_keys(user)
+
+xpathgod2 = '/html/body/div[1]/div/div[2]/div/div[3]/form/div[2]/div/input'
+userbox1 = driver.find_element_by_xpath(xpathgod2) 
+userbox1.send_keys(pswd)
+
+executor_url = driver.command_executor._url
+session_id = driver.session_id
+
+
+
+
+submitbtn = '/html/body/div[1]/div/div[2]/div/div[3]/form/button'
+clickbtn = driver.find_element_by_xpath(submitbtn)
+clickbtn.click()
+time.sleep(5)
+
+
+
+
+
+time.sleep(10)
+
+mesaages = '/html/body/div[1]/div/div[2]/div[2]/div[2]/div[2]/div[2]/div/div[2]/div[1]/div/div[3]/div/div/div/div[2]/form/div[5]/textarea'
+
+userbox2 = driver.find_element_by_xpath(mesaages) 
+userbox2.send_keys(txt)
+
+
+submitbtn3 = '//*[@id="send_button"]'
+clickbtn = driver.find_element_by_xpath(submitbtn3)
+clickbtn.click()
+userbox2 = driver.find_element_by_xpath(mesaages) 
+userbox2.send_keys(txt)
